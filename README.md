@@ -40,7 +40,9 @@ With the following rules:
     * Type-hint could be resolved through the Laravel's ServiceContainer.
     * Parameter's name matches a Command's argument or option.
     * Invalid function prototype definition.
-    
+
+**Note**: that cron expressions can't be defined as is (since `*/` closes the comment). Thus, the `*/` can be achieved using `*\` instead.
+
 #### Subscription
 
 Like you would do with any other Laravel command, you need to register CCMDs in `App\Console\Kernel.php`.
