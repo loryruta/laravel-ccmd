@@ -34,14 +34,13 @@ function helloWorld(Command $command) // The argument $person could even be inje
 With the following rules:
 * `@command` and `@signature` must be defined (the other fields are optional).
 * `@repeat` could be any valid PHP string (it's resolved using `eval()`). If using a cron expression, remember to provide ''.
+* In cron expressions, you can't use `*/` since it would close the comment. You can use `*\` instead.
 * The command function can have any name.
 * The parameters of the command function function are resolved with this sequence:
     * Type-hint is a `Illuminate\Console\Command`, then is fed with the current (auto-generated) Laravel command.
     * Type-hint could be resolved through the Laravel's ServiceContainer.
     * Parameter's name matches a Command's argument or option.
     * Invalid function prototype definition.
-
-**Note**: that cron expressions can't be defined as is (since `*/` closes the comment). Thus, the `*/` can be achieved using `*\` instead.
 
 #### Subscription
 
