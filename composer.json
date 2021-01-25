@@ -2,6 +2,7 @@
 {
     "name": "rutay/laravel-ccmd",
     "description": "ccmd is a Laravel package that provides a less verbose way to define and schedule commands.",
+    "keywords": ["laravel", "laravel-ccmd", "command", "utility"],
     "version": "1.0",
     "type": "project",
     "license": "MIT",
