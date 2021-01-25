@@ -1,0 +1,24 @@
+
+{
+    "name": "rutay/laravel-ccmd",
+    "description": "ccmd is a Laravel package that provides a less verbose way to define and schedule commands.",
+    "version": "1.0",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lorenzo Rutayisire",
+            "email": "lorenzorutayisire@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Rutay\\CCMD\\": "src/"
+        }
+    },
+    "require": {},
+    "extra": {
+        "laravel": {}
+    }
+}
