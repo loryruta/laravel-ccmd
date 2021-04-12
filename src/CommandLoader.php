@@ -98,7 +98,8 @@ class CommandLoader
         foreach ($classes as $class) {
             $this->foreachCommandOfClass($class, function ($signature, $description, $repeat, $class, $method) use ($schedule) {
                 if ($repeat !== null) {
-                    $schedule->command($signature)->cron($repeat);
+                    $command = new CommandWrapper($signature, $description, $class, $method);
+                    $schedule->command($command->getName(), [])->cron($repeat); // The command, at the moment, will always be called without any additional argument!
                 }
             });
         }

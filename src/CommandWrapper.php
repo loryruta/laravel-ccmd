@@ -40,7 +40,8 @@ class CommandWrapper extends Command
         // For every parameter of the command's method, tries to get an argument (instance) out of it.
         $args = [];
         foreach ($this->method->getParameters() as $param) {
-            $type = ((object) $param->getType())->getName();
+            $type = (object) $param->getType();
+            $type = method_exists($type, 'getName') ? $type->getName() : null;
             $arg = null;
 
             // If the parameter is a Command type, then feed it with $this.
@@ -50,15 +51,22 @@ class CommandWrapper extends Command
         
             // Try to resolve the parameter through the Laravel's service container.
             if (!$arg) {
-                if ($type && app()->bound($type)) {
+                if ($type && class_exists($type)) {
                     $arg = app()->make($type);
                 }
             }
 
             // If the parameter is still not solved, it's an argument or an option.
             // It's suggested to access these parameters through the Command class to be more clear.
-            if (!$arg) $arg = $this->argument($param->getName());
-            if (!$arg) $arg = $this->option($param->getName());
+
+
+            $name = $param->getName();
+
+            if (!$arg && $this->hasArgument($name)) {
+                $arg = $this->argument($name);
+            } else if (!$arg && $this->hasOption($name)) {
+                $arg = $this->option($name);
+            }
             
             $args[] = $arg;
         }
